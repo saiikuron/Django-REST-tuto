@@ -10,6 +10,8 @@ autopep8 = "*"
 [packages]
 django = "==2.2.12"
 djangorestframework = "*"
+djangorestframework-simplejwt = "*"
+django-rest-auth = "*"
 
 [requires]
 python_version = "3.8"
