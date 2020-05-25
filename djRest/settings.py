@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     # 3rd Party
     'rest_framework',
+    'corsheaders',
 
     # Local
     'account',
@@ -50,6 +51,8 @@ AUTH_USER_MODEL = 'account.CustomUser'
 
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -60,6 +63,11 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'djRest.urls'
+
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:3000',
+    'http://localhost:8000',
+]
 
 TEMPLATES = [
     {
