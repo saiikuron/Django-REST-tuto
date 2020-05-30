@@ -2,14 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./bootstrap.min.css";
 import Header from "./components/Header";
-import Article from "./components/Article";
+import ArticleList from "./components/ArticleList";
 import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
   <React.StrictMode>
     <Header />
     <br />
-    <Article />
+    <ArticleList />
   </React.StrictMode>,
   document.getElementById("root")
 );

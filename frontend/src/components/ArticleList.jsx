@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-function Article() {
+function ArticleList() {
   const [articles, setArticle] = useState({ article: [] });
   const [isFetched, setFetch] = useState(false);
 
@@ -17,12 +17,14 @@ function Article() {
 
   return (
     <div className="container">
+      <h3>Article list:</h3>
       {isFetched &&
         articles.map((article) => {
           return (
             <div className={article.id}>
-              <h3>{article.title}</h3>
-              <p>{article.author}</p>
+              <p>
+                {article.id} - {article.title}
+              </p>
             </div>
           );
         })}
@@ -30,4 +32,4 @@ function Article() {
   );
 }
 
-export default Article;
+export default ArticleList;

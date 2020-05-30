@@ -65,7 +65,12 @@ ROOT_URLCONF = 'djRest.urls'
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
-CORS_ORIGIN_ALLOW_ALL = True  # any website has access to my api
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:8000',
+    'http://localhost:3000',
+]
+
 CORS_URLS_REGEX = r'^/api/.*$'
 
 TEMPLATES = [
