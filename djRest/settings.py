@@ -51,10 +51,9 @@ AUTH_USER_MODEL = 'account.CustomUser'
 
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',  # django-cors-headers 3.3.0
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -64,10 +63,10 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'djRest.urls'
 
-CORS_ORIGIN_WHITELIST = [
-    'http://localhost:3000',
-    'http://localhost:8000',
-]
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+
+CORS_ORIGIN_ALLOW_ALL = True  # any website has access to my api
+CORS_URLS_REGEX = r'^/api/.*$'
 
 TEMPLATES = [
     {
