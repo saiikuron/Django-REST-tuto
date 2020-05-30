@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import "./bootstrap.min.css";
 import Header from "./components/Header";
 import ArticleList from "./components/ArticleList";
+import TestArticleSWR from "./components/TestArticleSWR";
 import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
@@ -10,6 +11,8 @@ ReactDOM.render(
     <Header />
     <br />
     <ArticleList />
+    <br />
+    <TestArticleSWR />
   </React.StrictMode>,
   document.getElementById("root")
 );
