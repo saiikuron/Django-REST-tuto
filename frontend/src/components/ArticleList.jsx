@@ -1,35 +1,38 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import useSWR from "swr";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
-function ArticleList() {
-  const [articles, setArticle] = useState({ article: [] });
-  const [isFetched, setFetch] = useState(false);
+import AddArticle from "./AddArticle";
 
-  const fetchData = async () => {
-    const res = await fetch("http://localhost:8000/api/r/article/");
-    const data = await res.json();
-    setArticle(data);
-    setFetch(true);
-  };
+const ArticlesEndpoint = "http://localhost:8000/api/r/article/";
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+const getData = async () => {
+  return axios.get(ArticlesEndpoint).then((res) => {
+    return res.data;
+  });
+};
+
+const ArticleList = () => {
+  const { data: articles } = useSWR(ArticlesEndpoint, getData);
 
   return (
     <div className="container">
+      <AddArticle /> <br />
       <h3>Article list:</h3>
-      {isFetched &&
+      {articles &&
         articles.map((article) => {
           return (
-            <div className={article.id}>
+            <div key={article.id}>
               <p>
-                {article.id} - {article.title}
+                {article.id} -{" "}
+                <Link to={`/${article.id}`}>{article.title}</Link>,{" "}
+                {article.author}
               </p>
             </div>
           );
         })}
     </div>
   );
-}
-
+};
 export default ArticleList;
