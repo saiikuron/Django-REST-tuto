@@ -25,7 +25,6 @@ function ArticleUpdate({ match }) {
 
   useEffect(() => {
     getArticle();
-    console.log();
   }, []);
 
   return (
