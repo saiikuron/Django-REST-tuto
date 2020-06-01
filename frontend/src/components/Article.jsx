@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import ArticleList from "./ArticleList";
-import ArticleUpdate from "./ArticleUpdate";
+import { ArticleList } from "./ArticleList";
+import { ArticleUpdate } from "./ArticleUpdate";
 
 function Article() {
   return (

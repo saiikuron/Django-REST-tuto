@@ -7,17 +7,17 @@ import AddArticle from "./AddArticle";
 
 const ArticlesEndpoint = "http://localhost:8000/api/r/article/";
 
-const getData = async () => {
+const getData = () => {
   return axios.get(ArticlesEndpoint).then((res) => {
     return res.data;
   });
 };
 
-const ArticleList = () => {
+export const ArticleList = () => {
   const { data: articles } = useSWR(ArticlesEndpoint, getData);
 
   return (
-    <div className="container">
+    <div className="ArticleList">
       <AddArticle /> <br />
       <h3>Article list:</h3>
       {articles &&
@@ -35,4 +35,3 @@ const ArticleList = () => {
     </div>
   );
 };
-export default ArticleList;

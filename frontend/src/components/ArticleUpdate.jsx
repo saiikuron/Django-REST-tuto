@@ -2,22 +2,31 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import { useHistory } from "react-router-dom";
 
-function ArticleUpdate({ match }) {
+export const ArticleUpdate = ({ match }) => {
+  const ArticlesEndpoint = `http://localhost:8000/api/r/article/${match.params.id}/`;
   const [title, setTitle] = useState();
   const [author, setAuthor] = useState();
+  let history = useHistory();
 
-  const updateArticle = () => {
-    const data = { title, author };
-    axios
-      .put(`http://localhost:8000/api/r/article/16/`, data)
-      .then((res) => {});
+  const Redirect = () => {
+    history.push("/");
   };
 
-  //   (`http://localhost:8000/api/r/article/${match.id}`)
+  const deleteArticle = async () => {
+    await axios.delete(ArticlesEndpoint).then((res) => {});
+    Redirect();
+  };
+
+  const updateArticle = async () => {
+    const data = { title, author };
+    await axios.put(ArticlesEndpoint, data).then((res) => {});
+    Redirect();
+  };
 
   const getArticle = () => {
-    return axios.get(`http://localhost:8000/api/r/article/16`).then((res) => {
+    return axios.get(ArticlesEndpoint).then((res) => {
       setTitle(res.data.title);
       setAuthor(res.data.author);
     });
@@ -37,7 +46,6 @@ function ArticleUpdate({ match }) {
             onChange={(evt) => setTitle(evt.target.value)}
           />
         </Form.Group>
-
         <Form.Group controlId="formAddArticleAuthor">
           <Form.Label>Author</Form.Label>
           <Form.Control
@@ -45,7 +53,12 @@ function ArticleUpdate({ match }) {
             onChange={(evt) => setAuthor(evt.target.value)}
           />
         </Form.Group>
-
+        <Button className="float-left" variant="danger" onClick={deleteArticle}>
+          Delete
+        </Button>
+        <Button className="" variant="light" onClick={Redirect}>
+          Cancel
+        </Button>
         <Button className="float-right" variant="primary" type="submit">
           Submit
         </Button>
@@ -53,6 +66,4 @@ function ArticleUpdate({ match }) {
       <br />
     </div>
   );
-}
-
-export default ArticleUpdate;
+};
