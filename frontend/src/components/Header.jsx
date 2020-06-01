@@ -4,7 +4,7 @@ import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
 function Header() {
   return (
     <Navbar expand="lg" variant="dark" bg="primary">
-      <Navbar.Brand href="#home">
+      <Navbar.Brand href="/">
         <img
           alt=""
           src="../../public/favicon.ico"
@@ -17,7 +17,7 @@ function Header() {
       <Navbar.Toggle aria-controls="navbarColor01" />
       <Navbar.Collapse id="navbarColor01">
         <Nav className="mr-auto">
-          <Nav.Link href="#home">Home</Nav.Link>
+          <Nav.Link href="/">Home</Nav.Link>
           <Nav.Link href="#features">Features</Nav.Link>
           <Nav.Link href="#pricing">Pricing</Nav.Link>
         </Nav>

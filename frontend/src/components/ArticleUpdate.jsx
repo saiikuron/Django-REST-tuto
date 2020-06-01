@@ -8,21 +8,28 @@ export const ArticleUpdate = ({ match }) => {
   const ArticlesEndpoint = `http://localhost:8000/api/r/article/${match.params.id}/`;
   const [title, setTitle] = useState();
   const [author, setAuthor] = useState();
+
   let history = useHistory();
 
-  const Redirect = () => {
-    history.push("/");
+  const deleteArticle = async (e) => {
+    e.preventDefault();
+    await axios
+      .delete(ArticlesEndpoint)
+      .then((res) => {
+        history.push("/");
+      })
+      .catch((err) => console.log(err));
   };
 
-  const deleteArticle = async () => {
-    await axios.delete(ArticlesEndpoint).then((res) => {});
-    Redirect();
-  };
-
-  const updateArticle = async () => {
+  const updateArticle = async (e) => {
+    e.preventDefault();
     const data = { title, author };
-    await axios.put(ArticlesEndpoint, data).then((res) => {});
-    Redirect();
+    await axios
+      .put(ArticlesEndpoint, data)
+      .then((res) => {
+        history.push("/");
+      })
+      .catch((err) => console.log(err));
   };
 
   const getArticle = () => {
@@ -56,7 +63,7 @@ export const ArticleUpdate = ({ match }) => {
         <Button className="float-left" variant="danger" onClick={deleteArticle}>
           Delete
         </Button>
-        <Button className="" variant="light" onClick={Redirect}>
+        <Button className="" variant="light" href="/">
           Cancel
         </Button>
         <Button className="float-right" variant="primary" type="submit">

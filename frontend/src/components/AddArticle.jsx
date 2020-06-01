@@ -7,7 +7,7 @@ function AddArticle() {
   const [title, setTitle] = useState();
   const [author, setAuthor] = useState();
 
-  const createArticle = () => {
+  const createArticle = async () => {
     const data = { title, author };
     axios.post(`http://localhost:8000/api/r/article/`, data).then((res) => {});
   };

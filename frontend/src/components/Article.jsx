@@ -9,7 +9,7 @@ function Article() {
       <div className="Article">
         <Switch>
           <Route path="/" exact component={ArticleList} />
-          <Route path="/:id" exact component={ArticleUpdate} />
+          <Route path="/:id/" exact component={ArticleUpdate} />
         </Switch>
       </div>
     </BrowserRouter>
